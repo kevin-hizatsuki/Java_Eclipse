@@ -1,0 +1,57 @@
+package APPBank;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import APPBank.Modelo;
+
+public class Teste {
+
+	private static final Object True = null;
+
+	@Test
+	public void test() {
+		Modelo modelo = new Modelo();
+		
+		//Teste de cadastramento de Usuario
+		
+		modelo.cadastrarUsuario(new Usuario("Jose_Ricardo","12345","josericardo@email.com","K2033J"));
+		modelo.cadastrarUsuario(new Usuario("Ana_Brito","21548","anabrito@email.com","J8011K"));
+		modelo.cadastrarUsuario(new Usuario("Jose_Ricardo","12346","josericardo2017@email.com","K2034J"));
+		modelo.logarUsuario("Jose_Ricardo", "12345");
+		
+		assertEquals(modelo.getUsuarios().size(),3);
+		
+		assertEquals(modelo.getUsuarios().get(0).getUser(),"Jose_Ricardo");
+		assertEquals(modelo.getUsuarios().get(0).getNumeroDaConta(),"K2033J");
+		assertEquals(modelo.getUsuarios().get(0).getSenha(),"12345");
+		assertEquals(modelo.buscarUsuarioPorUser("Jose_Ricardo").size(),2);
+		assertEquals(modelo.logarUsuario("Jose ricardo","123456"),True);
+		
+		assertEquals(modelo.getUsuarios().get(1).getUser(),"Ana_Brito");
+		assertEquals(modelo.getUsuarios().get(1).getNumeroDaConta(),"J8011K");
+		assertEquals(modelo.getUsuarios().get(1).getSenha(),"21548");
+		assertEquals(modelo.buscarUsuarioPorUser("Ana_Brito").size(),1);
+		
+		//Teste de cadastramento de Banco
+		
+		modelo.cadastrarBanco(new Banco(0001,"Bradesco","bancoBradesco@email.com"));
+		modelo.cadastrarBanco(new Banco(0002,"Itau","bancoItau@email.com"));
+		
+		assertEquals(modelo.getBancos().size(),2);
+		
+		assertEquals(modelo.getBancos().get(0).getNomeBanco(),"Bradesco");
+		assertEquals(modelo.getBancos().get(0).getId(),0001);
+		assertEquals(modelo.getBancos().get(0).getEmail(),"bancoBradesco@email.com");
+		assertEquals(modelo.buscarBancoPorNome("Bradesco").size(),1);
+		
+		assertEquals(modelo.getBancos().get(1).getNomeBanco(),"Itau");
+		assertEquals(modelo.getBancos().get(1).getId(),0002);
+		assertEquals(modelo.getBancos().get(1).getEmail(),"bancoItau@email.com");
+		assertEquals(modelo.buscarBancoPorNome("Itau").size(),1);
+		
+		
+	}
+
+}

@@ -1,0 +1,37 @@
+package APPBank;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import APPBank.Modelo;
+
+public class Teste {
+
+	@Test
+	public void test() {
+		Modelo modelo = new Modelo();
+		
+		modelo.cadastrarUsuario(new Usuario("Jose_Ricardo","12345","josericardo@email.com","K2033J"));
+		modelo.cadastrarUsuario(new Usuario("Ana_Brito","21548","anabrito@email.com","J8011K"));
+		
+		assertEquals(modelo.getUsuarios().size(),2);
+		
+		assertEquals(modelo.getUsuarios().get(0).getUser(),"Jose_Ricardo");
+		assertEquals(modelo.getUsuarios().get(0).getNumeroDaConta(),"K2033J");
+		
+		assertEquals(modelo.getUsuarios().get(1).getUser(),"Ana_Brito");
+		
+		modelo.cadastrarBanco(new Banco(0001,"Bradesco","bancoBradesco@email.com"));
+		modelo.cadastrarBanco(new Banco(0002,"Itau","bancoItau@email.com"));
+		
+		assertEquals(modelo.getBancos().size(),2);
+		
+		assertEquals(modelo.getBancos().get(0).getNomeBanco(),"Bradesco");
+		assertEquals(modelo.getBancos().get(0).getId(),0001);
+		assertEquals(modelo.getBancos().get(0).getEmail(),"bancoBradesco@email.com");
+		
+		
+	}
+
+}
