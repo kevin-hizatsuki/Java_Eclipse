@@ -1,0 +1,57 @@
+package APPBank;
+
+import java.util.LinkedList;
+import java.util.List;
+
+public class Modelo {
+	
+	private List<Usuario> usuarios = new LinkedList<Usuario>();
+	
+	private List<Banco> bancos = new LinkedList<Banco>();
+
+	public void cadastrarUsuario(Usuario usuario){
+		usuarios.add(usuario);
+	}
+	
+	public boolean logarUsuario(String user,String senha){
+		 for(Usuario usuario:usuarios){
+			 if(usuario.getUser().equals(user) && usuario.getSenha().equals(senha)) return true;
+		 }
+		 return false;
+	}
+	
+	public void cadastrarBanco(Banco banco){
+		bancos.add(banco);
+	}
+	
+	public List<Usuario> buscarUsuarioPorUser(String user){
+		List<Usuario> userEncontrados = new LinkedList<Usuario>();
+		for(Usuario usuario: this.usuarios){
+			if(usuario.getUser().equals(user)) userEncontrados.add(usuario);
+		}
+		return userEncontrados;
+		
+	}
+	
+	public List<Usuario> logarUsuario(String user,String senha){
+		List<Usuario> userLogado = new linkedList<Usuario>();
+	}
+	
+	public List<Banco> buscarBancoPorNome(String nomeBanco){
+		List<Banco> nomeBancoEncontrado = new LinkedList<Banco>();
+		for(Banco banco: this.bancos){
+			if(banco.getNomeBanco().equals(nomeBanco)) nomeBancoEncontrado.add(banco);
+		}
+		return nomeBancoEncontrado;
+		
+	}
+	
+	public List<Usuario> getUsuarios(){
+		return this.usuarios;
+	}
+	
+	public List<Banco> getBancos(){
+		return this.bancos;
+	}
+	
+}

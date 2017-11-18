@@ -1,0 +1,32 @@
+package APPBank;
+
+import java.time.LocalDate;
+
+public class Teste2 {
+	
+	public static void main(String[] args) {
+		
+		Modelo modelo = new Modelo();
+		
+		//Teste de cadastramento de Usuario
+		
+		modelo.cadastrarUsuario(new Usuario("Jose_Ricardo","12345","josericardo@email.com","K2033J", new Saldo("K2033J", 100.0), new Conta(25.00,123456,false, LocalDate.of(17,11,13))));
+		modelo.cadastrarUsuario(new Usuario("Ana_Brito","21548","anabrito@email.com","J8011K", new Saldo("J8011K", 100.0),new Conta(25.00,123456,false,LocalDate.of(17,11,13))));
+		modelo.cadastrarUsuario(new Usuario("Jose_Ricardo","12346","josericardo2017@email.com","K2034J", new Saldo("555", 100.0),new Conta(25.00,123456,false,LocalDate.of(17,11,13))));
+		modelo.cadastrarUsuario(new Usuario("Rodrigo Melo","54321","rodrigomelo@email.com","K2033J", new Saldo("K2033J", 500.0),new Conta(25.00,123456,false,LocalDate.of(17,11,13))));
+		modelo.cadastrarUsuario(new Usuario("","","","",new Saldo("",0),new Conta(0.0,0,false,LocalDate.of(17,11,13))));
+		modelo.logarUsuario("Jose_Ricardo", "12345");
+		
+		modelo.cadastrarBanco(new Banco(0001,"Bradesco","bancoBradesco@email.com"));
+		modelo.cadastrarBanco(new Banco(0002,"Itau","bancoItau@email.com"));
+		modelo.cadastrarBanco(new Banco(0001,"Brasil","bancoBradesco@email.com"));//Nao registra
+		
+		modelo.cadastrarAdmin(new Admin("Antonio_Almeida","senhaAntonio123"));
+		
+		modelo.cadastrarAdmin(new Admin("Antonio_Almeida","senhaAntonio123"));
+		
+		System.out.println(modelo.getUsuarios());
+		
+	}
+
+}
