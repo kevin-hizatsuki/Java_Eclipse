@@ -4,12 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-
-import java.time.Month;
 
 public class Modelo {
 	
@@ -21,17 +16,19 @@ public class Modelo {
 	private List<Admin> admins = new LinkedList<Admin>();
  	
 	public void cadastrarUsuario(Usuario usuario){
-		if (!usuario.getUser().equals("")||!usuario.getSenha().equals("")||!usuario.getEmail().equals("")||!usuario.getNumeroDaConta().equals("")){
-		if(contasRepetidas(usuario.getEmail(),usuario.getNumeroDaConta())){
-			usuarios.add(usuario);
+		if (!usuario.getUser().equals("")||!usuario.getSenha().equals("")||!usuario.getEmail().equals("")||!usuario.getNumeroDaConta().equals("")){		
+			if(contasRepetidas(usuario.getEmail(),usuario.getNumeroDaConta())){		
+			usuarios.add(usuario);		
 		}
 	}
 	}
 	 
 	public void cadastrarBanco(Banco banco){
+		if(!(banco.getId()==0) || !banco.getNomeBanco().equals("")|| !banco.getEmail().equals("")){
 		if(bancosRepetidos(banco.getNomeBanco(),banco.getId())){
 		bancos.add(banco);
 		}
+	}
 	}
 	
 	public void cadastrarAdmin(Admin admin){
@@ -111,11 +108,11 @@ public class Modelo {
 		return false;
 	}
 	
-	public boolean 	verificaContAtr(String user,String numeroDaConta,Date data){
-		Calendar cal = Calendar.getInstance();
+	public boolean 	verificaContAtr(String user,String numeroDaConta,LocalDate data){
+		LocalDate today = LocalDate.now();
 		for (Usuario usuario:usuarios){
 			if (usuario.getNumeroDaConta().equals(numeroDaConta)&& usuario.getUser().equals(user)){
-				if (cal.getTime().before(data))return true;
+				if (data.isBefore(today))return true;
 			}
 		}
 		return false;
